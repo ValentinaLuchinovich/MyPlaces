@@ -9,7 +9,7 @@ import UIKit
 
 class TableViewController: UITableViewController {
  
-    let citysNames = ["Санкт-Петербург", "Барселона", "Байкал", "Дубай", "Москва", "Стокгольм"]
+    let citysNames = ["Санкт-Петербург", "Барселона", "Москва", "Стокгольм"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,14 +26,15 @@ class TableViewController: UITableViewController {
     
     // Содержание ячейки таблицы
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        // Создаем ячеку и приводим к классу кастомной ячеки
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         // Добавляем в ячеку по индексу информацию из массива citysName
-        cell.textLabel?.text = citysNames[indexPath.row]
+        cell.nameLabel.text = citysNames[indexPath.row]
         // Добавляем в ячейку изображение по индексу элементов из массива citysNames
-        cell.imageView?.image = UIImage.init(named: citysNames[indexPath.row])
+        cell.imageOfPlace.image = UIImage.init(named: citysNames[indexPath.row])
         // Делаем изображение в ячейке круглым
-        cell.imageView?.layer.cornerRadius = cell.frame.size.height / 2
-        cell.imageView?.clipsToBounds = true
+        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
+        cell.imageOfPlace.clipsToBounds = true
     
         
         
