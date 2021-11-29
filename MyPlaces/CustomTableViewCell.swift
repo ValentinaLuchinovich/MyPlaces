@@ -16,4 +16,6 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet var locationLabel: UILabel!
     
     @IBOutlet var descriptionLabel: UILabel!
+
 }
+

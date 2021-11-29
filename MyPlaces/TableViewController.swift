@@ -8,8 +8,8 @@
 import UIKit
 
 class TableViewController: UITableViewController {
- 
-    let citysNames = ["Санкт-Петербург", "Барселона", "Москва", "Стокгольм"]
+    
+    var places = Place.getPlaces()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +21,28 @@ class TableViewController: UITableViewController {
     
     // Количесво ячеек в таблице
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return citysNames.count
+        return places.count
     }
     
     // Содержание ячейки таблицы
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Создаем ячеку и приводим к классу кастомной ячеки
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+        
+        let place = places[indexPath.row]
+        
         // Добавляем в ячеку по индексу информацию из массива citysName
-        cell.nameLabel.text = citysNames[indexPath.row]
-        // Добавляем в ячейку изображение по индексу элементов из массива citysNames
-        cell.imageOfPlace.image = UIImage.init(named: citysNames[indexPath.row])
+        cell.nameLabel.text = place.name
+        cell.locationLabel.text = place.location
+        cell.descriptionLabel.text = place.description
+        
+        // Добавляем в ячейку изображение
+        if place.image == nil {
+            cell.imageOfPlace.image = UIImage.init(named: place.cityImage!)
+        } else {
+            cell.imageOfPlace.image = place.image
+        }
+        
         // Делаем изображение в ячейке круглым
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
@@ -41,12 +52,16 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-
-// MARK: - TableView delegate
-    
-    // Высота ячеек таблицы
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
+    // Объявляем метод, который при нажатии на кнопку сохранения выводит нас на главный экран при помощи сигвея
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        // Передаем данные из редактируемого вью контроллера на главный и сохраняем внесенные данные
+        guard let newPlaceVC = segue.source as? EditPlaceTableViewController else { return }
+        newPlaceVC.saveNewPlace()
+        // Добавляем новый обьект в массив
+        places.append(newPlaceVC.newPlace!)
+        // Обнавляем измененный интерфейс
+        tableView.reloadData()
     }
+    
 
 }
