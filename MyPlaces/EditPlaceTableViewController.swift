@@ -9,7 +9,7 @@ import UIKit
 
 class EditPlaceTableViewController: UITableViewController {
     
-    var newPlace: Place?
+    // Инициализируем экземпляр модели
     var imageIsChanged = false
     
     @IBOutlet var placeImage: UIImageView!
@@ -21,7 +21,6 @@ class EditPlaceTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Делаем кнопку сохранения невидимой при первой загрузке экрана
         saveButton.isEnabled = false
         // Вызываем метод, который будет отслеживать есть ли в строке с именем текст
@@ -37,10 +36,18 @@ class EditPlaceTableViewController: UITableViewController {
         } else {
             image = UIImage(systemName: "camera.circle")
         }
-        newPlace = Place(name: placeName.text!,
-                         location: placeLocation.text,
-                         description: placeDescription.text,
-                         image: image)
+        
+        // Конвертируем изображение в тип Data, чтобы избавиться от несоответствия типов
+        let imageData = image?.pngData()
+        
+        // Присваем значения всем свойствам экземпляра модели
+        let newPlace = Place(name: placeName.text!,
+                             location: placeLocation.text,
+                             myDescription: placeDescription.text,
+                             imageData: imageData)
+        
+        // Сохраняем новый объект в базе данных
+        StorageManager.saveObject(newPlace)
     }
  
     // При нажатии на кнопку отмены вызываем метод закрывающий экран и стерающий его из памяти

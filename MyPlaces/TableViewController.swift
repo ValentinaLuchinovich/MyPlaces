@@ -6,14 +6,16 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TableViewController: UITableViewController {
-    
-    var places = Place.getPlaces()
+    // Используем объект типа Results для отображения в интерфейсе в реальном времени объектов хранящихся в базе данных
+    var places: Results<Place>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        // Отрбражаем на экране данные
+        places = realm.objects(Place.self)
     }
     
 
@@ -21,34 +23,30 @@ class TableViewController: UITableViewController {
     
     // Количесво ячеек в таблице
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return places.count
+        return places.isEmpty ? 0 : places.count
     }
     
     // Содержание ячейки таблицы
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Создаем ячеку и приводим к классу кастомной ячеки
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
-        
+
         let place = places[indexPath.row]
-        
+
         // Добавляем в ячеку по индексу информацию из массива citysName
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
         cell.descriptionLabel.text = place.description
-        
+
         // Добавляем в ячейку изображение
-        if place.image == nil {
-            cell.imageOfPlace.image = UIImage.init(named: place.cityImage!)
-        } else {
-            cell.imageOfPlace.image = place.image
-        }
-        
+        cell.imageOfPlace.image = UIImage(data: place.imageData!)
+
         // Делаем изображение в ячейке круглым
         cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
         cell.imageOfPlace.clipsToBounds = true
-    
-        
-        
+
+
+
         return cell
     }
     
@@ -57,11 +55,25 @@ class TableViewController: UITableViewController {
         // Передаем данные из редактируемого вью контроллера на главный и сохраняем внесенные данные
         guard let newPlaceVC = segue.source as? EditPlaceTableViewController else { return }
         newPlaceVC.saveNewPlace()
-        // Добавляем новый обьект в массив
-        places.append(newPlaceVC.newPlace!)
         // Обнавляем измененный интерфейс
         tableView.reloadData()
     }
     
+    // MARK: Table view delegate
+    // Метод выхывает пункты меню свайпом по ячейки с права на лево
+    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        // Определяем объект для удаления
+        let place = places[indexPath.row]
+        // Определяем действие при свайпе
+        let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { (_, _, _) in
+            // Удаляем объект из базы
+            StorageManager.deleteObject(place)
+            // Удаляем саму строку
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+        // Задаем действие свайпу
+        let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeAction
+    }
 
 }
