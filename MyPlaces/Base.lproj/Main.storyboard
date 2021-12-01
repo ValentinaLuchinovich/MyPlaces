@@ -68,6 +68,7 @@
                                     <outlet property="imageOfPlace" destination="6bC-Fk-ckG" id="a6R-vm-lvO"/>
                                     <outlet property="locationLabel" destination="pKd-74-hFT" id="ule-RB-u2Z"/>
                                     <outlet property="nameLabel" destination="hk0-mU-AMB" id="6Ts-rv-FKX"/>
+                                    <segue destination="w8h-hr-0kJ" kind="show" identifier="showDeteil" id="oDc-eA-Gis"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -76,7 +77,7 @@
                             <outlet property="delegate" destination="Rth-kk-Q9D" id="ril-c3-t34"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="My Places" id="rQV-JI-Rkj">
+                    <navigationItem key="navigationItem" title="My Places" largeTitleDisplayMode="never" id="rQV-JI-Rkj">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="s0I-Es-Fdj">
                             <connections>
                                 <segue destination="ey7-RW-GTt" kind="presentation" id="qGN-xt-ybn"/>
@@ -236,7 +237,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="lmj-0o-Dlp"/>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" title="New Place" id="OGP-GH-eMZ">
+                    <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="OGP-GH-eMZ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="pXa-vk-9cI">
                             <connections>
                                 <action selector="сancelAction:" destination="w8h-hr-0kJ" id="yUu-hd-Kpe"/>
@@ -260,15 +261,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap5-71-IjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="L7A-hp-Oks" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3144.9275362318845" y="34.821428571428569"/>
+            <point key="canvasLocation" x="2187" y="35"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SoR-B0-Z7X">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nlu-1t-UGe" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="L4G-Ta-9aN">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="L4G-Ta-9aN">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="23"/>
@@ -281,7 +282,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MpU-Ln-aUR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="500.00000000000006" y="34.821428571428569"/>
+            <point key="canvasLocation" x="1410" y="-652"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Pvv-nn-BpB">
@@ -299,9 +300,12 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ie1-dG-Uy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2234.7826086956525" y="34.821428571428569"/>
+            <point key="canvasLocation" x="2187" y="-651"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="GAv-K7-G59"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">

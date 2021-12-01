@@ -36,7 +36,7 @@ class TableViewController: UITableViewController {
         // Добавляем в ячеку по индексу информацию из массива citysName
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
-        cell.descriptionLabel.text = place.description
+        cell.descriptionLabel.text = place.myDescription
 
         // Добавляем в ячейку изображение
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
@@ -54,7 +54,7 @@ class TableViewController: UITableViewController {
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
         // Передаем данные из редактируемого вью контроллера на главный и сохраняем внесенные данные
         guard let newPlaceVC = segue.source as? EditPlaceTableViewController else { return }
-        newPlaceVC.saveNewPlace()
+        newPlaceVC.savePlace()
         // Обнавляем измененный интерфейс
         tableView.reloadData()
     }
@@ -74,6 +74,17 @@ class TableViewController: UITableViewController {
         // Задаем действие свайпу
         let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeAction
+    }
+    
+    //MARK: Navigation
+    
+    // При нажатии на ячеку будет выводиться экран редактирования, но уже с переданной туда информацией имеющейся в ячейке
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDeteil" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let newPlaceVC = segue.destination as! EditPlaceTableViewController
+            newPlaceVC.currentPlace = places[indexPath.row]
+        }
     }
 
 }

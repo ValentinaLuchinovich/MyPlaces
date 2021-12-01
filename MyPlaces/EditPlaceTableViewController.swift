@@ -9,6 +9,9 @@ import UIKit
 
 class EditPlaceTableViewController: UITableViewController {
     
+    // Создаем свойство хранящее в себе информацию внесенную в ячейку
+    var currentPlace: Place?
+    
     // Инициализируем экземпляр модели
     var imageIsChanged = false
     
@@ -25,10 +28,12 @@ class EditPlaceTableViewController: UITableViewController {
         saveButton.isEnabled = false
         // Вызываем метод, который будет отслеживать есть ли в строке с именем текст
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
+        // Вызываем метод добавляющий информацию из ячейки на экран редактирования
+        setupEditScreen()
     }
     
     // Метод отвечает за сохранение заполненных полей в свойства модели
-    func saveNewPlace() {
+    func savePlace() {
         var image: UIImage?
         // Если изображение было изменено, то меняем маленькую версию картинки
         if imageIsChanged {
@@ -46,8 +51,52 @@ class EditPlaceTableViewController: UITableViewController {
                              myDescription: placeDescription.text,
                              imageData: imageData)
         
+        //Проверяем находимя мы в режиме редактирования записи или же создания
+        if currentPlace != nil {
+            // Меняем измененное значение на новое
+            try! realm.write {
+                currentPlace?.name = newPlace.name
+                currentPlace?.location = newPlace.location
+                currentPlace?.myDescription = newPlace.myDescription
+                currentPlace?.imageData = newPlace.imageData
+            }
+        } else  {
         // Сохраняем новый объект в базе данных
         StorageManager.saveObject(newPlace)
+        }
+    }
+    
+    // Метод добавления информации из ячейки на экран редактирования записи
+    private func setupEditScreen() {
+        if currentPlace != nil {
+            // Добавляем свойства для Navigation bar, которые должны срабатвать только при редактировании существующего объекта
+            setupNavigationBar()
+            // Избавляемся от бага, когда при редактировании изображение потом исчезает
+            imageIsChanged = true
+            
+            guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
+            placeImage.image = image
+            placeImage.contentMode = .scaleAspectFill
+            placeName.text = currentPlace?.name
+            placeLocation.text = currentPlace?.location
+            placeDescription.text = currentPlace?.myDescription
+        }
+    }
+    
+    //Работа с Navigation bar
+    private func setupNavigationBar() {
+        // Убираем надпись Back на кнопке возврата на предыдущий экран и оставляем только стрелку
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        }
+        // Убираем на экране редактирования кнопку cencel
+        navigationItem.leftBarButtonItem = nil
+        // Передаем в заголовок экрана редактирования название заведения
+        title = currentPlace?.name
+        // Делаем кнопку save на экране редактирования всегда доступной, так как ситуации когда нет названия при редавктировании существующей записи быть не может
+        saveButton.isEnabled = true
+        
+        
     }
  
     // При нажатии на кнопку отмены вызываем метод закрывающий экран и стерающий его из памяти
