@@ -8,10 +8,18 @@
 import UIKit
 import RealmSwift
 
-class TableViewController: UITableViewController {
+class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     // Используем объект типа Results для отображения в интерфейсе в реальном времени объектов хранящихся в базе данных
     var places: Results<Place>!
-
+    
+    // Сортировка по возрастанию
+    var ascendingSorting = true
+    
+    
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var segmentedControl: UISegmentedControl!
+    @IBOutlet var reversedSortingButtom: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Отрбражаем на экране данные
@@ -22,12 +30,12 @@ class TableViewController: UITableViewController {
 // MARK: - TableView data source
     
     // Количесво ячеек в таблице
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.isEmpty ? 0 : places.count
     }
     
     // Содержание ячейки таблицы
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Создаем ячеку и приводим к классу кастомной ячеки
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
 
@@ -50,18 +58,9 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    // Объявляем метод, который при нажатии на кнопку сохранения выводит нас на главный экран при помощи сигвея
-    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
-        // Передаем данные из редактируемого вью контроллера на главный и сохраняем внесенные данные
-        guard let newPlaceVC = segue.source as? EditPlaceTableViewController else { return }
-        newPlaceVC.savePlace()
-        // Обнавляем измененный интерфейс
-        tableView.reloadData()
-    }
-    
     // MARK: Table view delegate
     // Метод выхывает пункты меню свайпом по ячейки с права на лево
-    override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Определяем объект для удаления
         let place = places[indexPath.row]
         // Определяем действие при свайпе
@@ -87,4 +86,44 @@ class TableViewController: UITableViewController {
         }
     }
 
+    // Объявляем метод, который при нажатии на кнопку сохранения выводит нас на главный экран при помощи сигвея
+    @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
+        // Передаем данные из редактируемого вью контроллера на главный и сохраняем внесенные данные
+        guard let newPlaceVC = segue.source as? EditPlaceTableViewController else { return }
+        newPlaceVC.savePlace()
+        // Обнавляем измененный интерфейс
+        tableView.reloadData()
+    }
+    
+    // Метод отвечающий за выбор вида сортировки
+    @IBAction func sortSelection(_ sender: UISegmentedControl) {
+        sorting()
+    }
+    
+    // При нажатии на кнопку меняем сортировку на обратный порядок
+    @IBAction func reversedSorting(_ sender: Any) {
+        // Метод меняет значение на противоположенное
+        ascendingSorting.toggle()
+        
+        // Меняем значение в случае нажатия кнопки
+        if ascendingSorting {
+            reversedSortingButtom.image = UIImage(systemName: "arrow.up.arrow.down.circle")
+        } else {
+            reversedSortingButtom.image = UIImage(systemName: "arrow.up.arrow.down.circle.fill")
+        }
+        
+        sorting()
+    }
+    
+    // Метод для сортировки
+    private func sorting() {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            places = places.sorted(byKeyPath: "date", ascending: ascendingSorting)
+        } else {
+            places = places.sorted(byKeyPath: "name", ascending: ascendingSorting)
+        }
+        
+        // Обновляем таблицу
+        tableView.reloadData()
+    }
 }
