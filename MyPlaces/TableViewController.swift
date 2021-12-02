@@ -9,11 +9,24 @@ import UIKit
 import RealmSwift
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    // Используем объект типа Results для отображения в интерфейсе в реальном времени объектов хранящихся в базе данных
-    var places: Results<Place>!
     
+    // Поиск. Свойство nil указывает на то, что отображение результатов поиска будет в томде контроллере, где и проходит сам поиск
+    private let searchController = UISearchController(searchResultsController: nil)
+    // Массив с отфильтроваными записями из поиска
+    private var filtredPlaces: Results<Place>!
+    // Используем объект типа Results для отображения в интерфейсе в реальном времени объектов хранящихся в базе данных
+    private var places: Results<Place>!
     // Сортировка по возрастанию
-    var ascendingSorting = true
+    private var ascendingSorting = true
+    // Свойство проверяет является ли строка поиска пустой
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {return false}
+        return text.isEmpty
+    }
+    // Возвращает true когда поисковый запрос активирован
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarIsEmpty
+    }
     
     
     @IBOutlet var tableView: UITableView!
@@ -24,22 +37,44 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         super.viewDidLoad()
         // Отрбражаем на экране данные
         places = realm.objects(Place.self)
+        
+        // Настройка search controller
+        // Получателем изменения текста в поисковой строке является сам класс
+        searchController.searchResultsUpdater = self
+        // Позволяем взаимодействовать с контроллером как с основным
+        searchController.obscuresBackgroundDuringPresentation = false
+        // Задаем название строки поиска
+        searchController.searchBar.placeholder = "Поиск"
+        // Добавляем searchcontroller в navigation bar
+        navigationItem.searchController = searchController
+        // Отпускаем строку поиска при переходе на другой экран
+        definesPresentationContext = true
     }
     
 
 // MARK: - TableView data source
     
-    // Количесво ячеек в таблице
+    // Количесво ячеек в таблице зависит от того идёт сейчас поиск или экран статичен
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isFiltering {
+            return filtredPlaces.count
+        } else {
         return places.isEmpty ? 0 : places.count
+        }
     }
     
-    // Содержание ячейки таблицы
+    // Содержание ячейки таблицы (зависит от того идет ли поиск)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Создаем ячеку и приводим к классу кастомной ячеки
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
+        
+        var place = Place()
 
-        let place = places[indexPath.row]
+        if isFiltering {
+            place = filtredPlaces[indexPath.row]
+        } else {
+            place = places[indexPath.row]
+        }
 
         // Добавляем в ячеку по индексу информацию из массива citysName
         cell.nameLabel.text = place.name
@@ -81,8 +116,15 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDeteil" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            let place: Place
+            // Передаем разные данные в зависимости от того активирована ли строка поиска
+            if isFiltering {
+                place = filtredPlaces[indexPath.row]
+            } else {
+                place = places[indexPath.row]
+            }
             let newPlaceVC = segue.destination as! EditPlaceTableViewController
-            newPlaceVC.currentPlace = places[indexPath.row]
+            newPlaceVC.currentPlace = place
         }
     }
 
@@ -124,6 +166,21 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         // Обновляем таблицу
+        tableView.reloadData()
+    }
+}
+
+// Работа с поиском
+extension TableViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    // Метод занимается фильтрацией контента в соответствии с поисковым запросом
+    private func filterContentForSearchText(_ searchText: String) {
+        filtredPlaces = places
+        // Заполняем поисковый массив объектами из основного массива c использованием инструментов Realm
+        filtredPlaces = places.filter("name CONTAINS[c] %@ OR location CONTAINS[c] %@", searchText, searchText)
         tableView.reloadData()
     }
 }

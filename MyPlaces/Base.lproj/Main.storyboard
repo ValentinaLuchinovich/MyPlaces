@@ -16,9 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="Dfu-77-NZE">
-                                <rect key="frame" x="0.0" y="127" width="414" height="769"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Dfu-77-NZE">
+                                <rect key="frame" x="0.0" y="120" width="414" height="776"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="Amo-Mb-XvW" customClass="CustomTableViewCell" customModule="MyPlaces" customModuleProvider="target">
@@ -83,7 +82,7 @@
                                 </connections>
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Lw2-sZ-Ntk">
-                                <rect key="frame" x="0.0" y="88" width="414" height="39"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="32"/>
                                 <segments>
                                     <segment title="Дата"/>
                                     <segment title="Название"/>
@@ -96,9 +95,12 @@
                         <viewLayoutGuide key="safeArea" id="3Pw-DR-xe2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Dfu-77-NZE" firstAttribute="leading" secondItem="Lw2-sZ-Ntk" secondAttribute="leading" id="2jU-At-016"/>
+                            <constraint firstItem="Dfu-77-NZE" firstAttribute="top" secondItem="Lw2-sZ-Ntk" secondAttribute="bottom" constant="1" id="5GU-N9-HqM"/>
                             <constraint firstItem="Lw2-sZ-Ntk" firstAttribute="leading" secondItem="3Pw-DR-xe2" secondAttribute="leading" id="Euf-gO-yp3"/>
-                            <constraint firstItem="Dfu-77-NZE" firstAttribute="top" secondItem="Lw2-sZ-Ntk" secondAttribute="bottom" constant="1" id="eKw-Uh-fCT"/>
-                            <constraint firstItem="Lw2-sZ-Ntk" firstAttribute="top" secondItem="3Pw-DR-xe2" secondAttribute="top" id="oiE-aF-Zbk"/>
+                            <constraint firstItem="Lw2-sZ-Ntk" firstAttribute="top" secondItem="3Pw-DR-xe2" secondAttribute="top" id="Rbk-Gj-8GH"/>
+                            <constraint firstAttribute="bottom" secondItem="Dfu-77-NZE" secondAttribute="bottom" id="fSo-D8-zKm"/>
+                            <constraint firstItem="Dfu-77-NZE" firstAttribute="trailing" secondItem="Lw2-sZ-Ntk" secondAttribute="trailing" id="rgv-AM-wow"/>
                             <constraint firstItem="3Pw-DR-xe2" firstAttribute="trailing" secondItem="Lw2-sZ-Ntk" secondAttribute="trailing" id="vbq-V4-CPr"/>
                         </constraints>
                     </view>
