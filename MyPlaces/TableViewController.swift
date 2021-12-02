@@ -59,7 +59,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         if isFiltering {
             return filtredPlaces.count
         } else {
-        return places.isEmpty ? 0 : places.count
+        return places.count
         }
     }
     
@@ -68,13 +68,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Создаем ячеку и приводим к классу кастомной ячеки
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CustomTableViewCell
         
-        var place = Place()
-
-        if isFiltering {
-            place = filtredPlaces[indexPath.row]
-        } else {
-            place = places[indexPath.row]
-        }
+        let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
 
         // Добавляем в ячеку по индексу информацию из массива citysName
         cell.nameLabel.text = place.name
@@ -84,16 +78,16 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Добавляем в ячейку изображение
         cell.imageOfPlace.image = UIImage(data: place.imageData!)
 
-        // Делаем изображение в ячейке круглым
-        cell.imageOfPlace.layer.cornerRadius = cell.imageOfPlace.frame.size.height / 2
-        cell.imageOfPlace.clipsToBounds = true
-
-
-
         return cell
     }
     
     // MARK: Table view delegate
+    
+    // Метод отменяет выделение ячейки после перехода на неё
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     // Метод выхывает пункты меню свайпом по ячейки с права на лево
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Определяем объект для удаления
@@ -116,13 +110,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDeteil" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let place: Place
             // Передаем разные данные в зависимости от того активирована ли строка поиска
-            if isFiltering {
-                place = filtredPlaces[indexPath.row]
-            } else {
-                place = places[indexPath.row]
-            }
+            let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
             let newPlaceVC = segue.destination as! EditPlaceTableViewController
             newPlaceVC.currentPlace = place
         }
