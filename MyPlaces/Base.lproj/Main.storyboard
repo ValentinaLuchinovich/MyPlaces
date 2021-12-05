@@ -325,6 +325,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-Eg-gwc">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vD0-Nc-svL" id="Jce-uZ-bw6"/>
+                                </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-GR-j2u">
                                 <rect key="frame" x="354" y="20" width="40" height="40"/>
@@ -358,6 +361,9 @@
                             <constraint firstItem="ohq-GR-j2u" firstAttribute="top" secondItem="ZuG-Nl-jl2" secondAttribute="top" constant="20" id="vkP-cg-DzL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="DDR-Eg-gwc" id="kUz-V8-92c"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXv-9c-ybg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

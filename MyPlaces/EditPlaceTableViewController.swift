@@ -34,14 +34,9 @@ class EditPlaceTableViewController: UITableViewController {
     
     // Метод отвечает за сохранение заполненных полей в свойства модели
     func savePlace() {
-        var image: UIImage?
         // Если изображение было изменено, то меняем маленькую версию картинки
-        if imageIsChanged {
-            image = placeImage.image
-        } else {
-            image = UIImage(systemName: "camera.circle")
-        }
-        
+        let image = imageIsChanged ?placeImage.image : UIImage(systemName: "camera.circle")
+     
         // Конвертируем изображение в тип Data, чтобы избавиться от несоответствия типов
         let imageData = image?.pngData()
         
@@ -104,6 +99,19 @@ class EditPlaceTableViewController: UITableViewController {
         dismiss(animated: true)
     }
     
+    // MARK: Navigation
+    // Метод передает информацию о завидении при переходе на MapViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier != "showMap" { return }
+        // Если предыдущее условие не сработаеит, то создаем экземпляр класса
+        let mapVC = segue.destination as! MapViewController
+        // Передаем значения на MapViewController
+        mapVC.place.name = placeName.text!
+        mapVC.place.location = placeLocation.text
+        mapVC.place.myDescription = placeDescription.text
+        mapVC.place.imageData = placeImage.image?.pngData()
+        
+    }
 }
 
 // MARK: Text field delegate
