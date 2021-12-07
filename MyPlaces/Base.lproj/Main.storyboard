@@ -349,6 +349,23 @@
                                     <action selector="closeVC" destination="vD0-Nc-svL" eventType="touchUpInside" id="Pkl-qR-dgV"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KC7-sm-gMg">
+                                <rect key="frame" x="344" y="752" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ihk-fW-Ofi"/>
+                                    <constraint firstAttribute="width" constant="50" id="ONl-1K-g32"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="">
+                                    <imageReference key="image" image="location.circle" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
+                                        <hierarchicalColors>
+                                            <color systemColor="labelColor"/>
+                                            <color systemColor="secondaryLabelColor"/>
+                                            <color systemColor="tertiaryLabelColor"/>
+                                        </hierarchicalColors>
+                                    </imageReference>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZuG-Nl-jl2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -356,9 +373,11 @@
                             <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" secondItem="ohq-GR-j2u" secondAttribute="trailing" constant="20" id="1qy-zb-boh"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="leading" secondItem="ZuG-Nl-jl2" secondAttribute="leading" id="5Ur-zg-cVB"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="trailing" secondItem="ZuG-Nl-jl2" secondAttribute="trailing" id="NrZ-XZ-LAe"/>
+                            <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" secondItem="KC7-sm-gMg" secondAttribute="trailing" constant="20" id="clu-Wh-Bw7"/>
                             <constraint firstAttribute="bottom" secondItem="DDR-Eg-gwc" secondAttribute="bottom" id="f0P-V0-lKK"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="top" secondItem="Q2l-Ou-KoB" secondAttribute="top" id="lEC-Ch-F4d"/>
                             <constraint firstItem="ohq-GR-j2u" firstAttribute="top" secondItem="ZuG-Nl-jl2" secondAttribute="top" constant="20" id="vkP-cg-DzL"/>
+                            <constraint firstAttribute="bottom" secondItem="KC7-sm-gMg" secondAttribute="bottom" constant="40" id="wxh-ZG-JIN"/>
                         </constraints>
                     </view>
                     <connections>
@@ -414,6 +433,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
+        <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="map3" width="100" height="100"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>

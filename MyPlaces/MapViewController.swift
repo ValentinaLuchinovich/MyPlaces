@@ -7,6 +7,7 @@
 
 import UIKit
 import MapKit
+import CoreLocation
 
 class MapViewController: UIViewController {
 
@@ -14,10 +15,13 @@ class MapViewController: UIViewController {
     
     var place = Place()
     var annotetionIdentifire = "annotetionIdentifire"
+    // Менеджер для управления действиями связанными с местоположением пользователя
+    let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPlacemark()
+        checkLocationServices()
     }
 
     // Нажатие на кнопку крестика будет закрывать вьюконтроллер
@@ -58,6 +62,67 @@ class MapViewController: UIViewController {
             self.mapView.selectAnnotation(annotation, animated: true)
         }
     }
+    // Проверяем включены ли службы геолокации
+    private func checkLocationServices() {
+        if CLLocationManager.locationServicesEnabled() {
+            setupLocationManager()
+            checkLocationAutorization()
+        } else {
+            // Реализуем задержку появления контроллера иначе он не будет отображаться
+            // так как метод viewDidLoad загружается еще до того как экран отображен
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.alertLocation(title: "Службы геолокации отключены",
+                                   message: "Перейдите в настройки, чтобы включить службы геолокации")
+            }
+        }
+    }
+    
+    // Метод задаёт первоночальные установки LocationManager
+    private func setupLocationManager() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+    }
+    
+    // Метод проверяет статус на разрешение использования геопозиции
+    private func checkLocationAutorization() {
+        switch locationManager.authorizationStatus {
+        case .authorizedWhenInUse:
+            mapView.showsUserLocation = true
+            break
+        case .notDetermined:
+            // Запрос на использование геолокации
+            locationManager.requestWhenInUseAuthorization()
+            break
+        case .restricted:
+            // Реализуем задержку появления контроллера иначе он не будет отображаться
+            // так как метод viewDidLoad загружается еще до того как экран отображен
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.alertLocation(title: "Службы геолокации отключены",
+                                   message: "Перейдите в настройки, чтобы включить службы геолокации")
+            }
+            break
+        case .denied:
+            // Реализуем задержку появления контроллера иначе он не будет отображаться
+            // так как метод viewDidLoad загружается еще до того как экран отображен
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.alertLocation(title: "Службы геолокации отключены",
+                                   message: "Перейдите в настройки, чтобы включить службы геолокации")
+            }
+            break
+        case .authorizedAlways:
+            break
+        @unknown default:
+            print("Новое неизвестное значение")
+        }
+    }
+    
+    // Алерт контроллер для служб геолокации
+    private func alertLocation(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
+    }
 }
 
 // Протокол MKMapViewDelegate позволяет расширять возможности аннотаций на карте
@@ -89,5 +154,12 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.rightCalloutAccessoryView = imageView
         }
         return annotationView
+    }
+}
+
+// Метод отслеживает в реальном времени изменение местоположения
+extension MapViewController: CLLocationManagerDelegate {
+    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        checkLocationAutorization()
     }
 }
