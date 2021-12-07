@@ -17,13 +17,31 @@ class MapViewController: UIViewController {
     var annotetionIdentifire = "annotetionIdentifire"
     // Менеджер для управления действиями связанными с местоположением пользователя
     let locationManager = CLLocationManager()
+    // Параметр для масштаба карты
+    let regionInMetrs = 1000.0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPlacemark()
         checkLocationServices()
+        // Убираем из зоны видимости стандартные логотипы карты Apple
+        mapView.layoutMargins.bottom = -100
     }
 
+    // Переход на участок карты где находится пользователь
+    @IBAction func centerViewInUserLocation() {
+        // Если у получается определить местоположение пользователя
+        if let location = locationManager.location?.coordinate {
+        // то определяем регион для позиционирования карты с местоположением пользователя в центре
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMetrs,
+                                            longitudinalMeters: regionInMetrs)
+            // Устонавливаем регион местоположения на экране
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
     // Нажатие на кнопку крестика будет закрывать вьюконтроллер
     @IBAction func closeVC() {
         dismiss(animated: true)
