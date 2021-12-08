@@ -8,43 +8,69 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SwiftUI
+
+// Реализуем протокол для передачи данных из MapViewController в EditPlaceTableViewController
+protocol MapViewControllerDelegate {
+    func getAddress (_ address: String?)
+}
 
 class MapViewController: UIViewController {
 
     @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapPinImage: UIImageView!
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var doneButtone: UIButton!
     
+    var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     var annotetionIdentifire = "annotetionIdentifire"
     // Менеджер для управления действиями связанными с местоположением пользователя
     let locationManager = CLLocationManager()
     // Параметр для масштаба карты
     let regionInMetrs = 1000.0
+    // Идентификатор определяющий какой метод нужно выбрать
+    var incomeSegueIdentifire = ""
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPlacemark()
+        setupMapView()
         checkLocationServices()
         // Убираем из зоны видимости стандартные логотипы карты Apple
         mapView.layoutMargins.bottom = -100
+        // По умолчанию делаем строку с адресом пустой
+        addressLabel.text = ""
     }
 
     // Переход на участок карты где находится пользователь
     @IBAction func centerViewInUserLocation() {
-        // Если у получается определить местоположение пользователя
-        if let location = locationManager.location?.coordinate {
-        // то определяем регион для позиционирования карты с местоположением пользователя в центре
-            let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMetrs,
-                                            longitudinalMeters: regionInMetrs)
-            // Устонавливаем регион местоположения на экране
-            mapView.setRegion(region, animated: true)
-        }
+        showUserLocation()
+    }
+    
+    // При нажатии выполняется передача данных из MapViewController в EditPlaceTableViewController
+    @IBAction func doneButtonePressed() {
+        mapViewControllerDelegate?.getAddress(addressLabel.text)
+        // Закрываем вьюконтроллер
+        dismiss(animated: true)
     }
     
     // Нажатие на кнопку крестика будет закрывать вьюконтроллер
     @IBAction func closeVC() {
         dismiss(animated: true)
+    }
+    
+    // Метод для настройки карты в зависимости от свойства incomeSegueIdentifire
+    private func setupMapView() {
+        if incomeSegueIdentifire == "showPlace" {
+            setupPlacemark()
+            // скрываеь mapPin при переходе по методу showPlace
+            mapPinImage.isHidden = true
+            // скрываем лейбл с адресом
+            addressLabel.isHidden = true
+            // скрываем кнопку готово
+            doneButtone.isHidden = true
+        }
     }
     
     // Настройки маркера места
@@ -106,6 +132,7 @@ class MapViewController: UIViewController {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
+            if incomeSegueIdentifire == "getAddress" { showUserLocation() }
             break
         case .notDetermined:
             // Запрос на использование геолокации
@@ -132,6 +159,28 @@ class MapViewController: UIViewController {
         @unknown default:
             print("Новое неизвестное значение")
         }
+    }
+    
+    // Метод отвечает за переход на экран MapViewController
+    private func showUserLocation() {
+        // Если у получается определить местоположение пользователя
+        if let location = locationManager.location?.coordinate {
+        // то определяем регион для позиционирования карты с местоположением пользователя в центре
+            let region = MKCoordinateRegion(center: location,
+                                            latitudinalMeters: regionInMetrs,
+                                            longitudinalMeters: regionInMetrs)
+            // Устонавливаем регион местоположения на экране
+            mapView.setRegion(region, animated: true)
+        }
+    }
+    
+    // Метод определяет координаты центра карты на котором установлен маркер
+    private func getCenterLocation(for mapView: MKMapView) -> CLLocation {
+        // широта
+        let latitude = mapView.centerCoordinate.latitude
+        // долгота
+        let longitude = mapView.centerCoordinate.longitude
+        return CLLocation(latitude: latitude, longitude: longitude)
     }
     
     // Алерт контроллер для служб геолокации
@@ -172,6 +221,37 @@ extension MapViewController: MKMapViewDelegate {
             annotationView?.rightCalloutAccessoryView = imageView
         }
         return annotationView
+    }
+    
+    // Получаем адрес соответствующий центру экрана
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        let center = getCenterLocation(for: mapView)
+        // Преображаем координаты в адрес
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(center) { (placemarks, error) in
+            // Проверяем объект error на содержимое
+            if let error = error {
+                print(error)
+                return
+            }
+            // Если ошибки нет - извлекаем массив меток
+            guard let placemarks = placemarks else { return }
+            let placemark = placemarks.first
+            // Извлекаем улицу и номер дома
+            let streetName = placemark?.thoroughfare
+            let buildNumber = placemark?.subThoroughfare
+            
+            // Обнавляем интервейс в основном потоке асинхронно
+            DispatchQueue.main.async {
+                if streetName != nil && buildNumber != nil {
+                self.addressLabel.text = "\(streetName!), \(buildNumber!)"
+                } else if streetName != nil {
+                    self.addressLabel.text = "\(streetName!)"
+                } else {
+                    self.addressLabel.text = ""
+                }
+            }
+        }
     }
 }
 

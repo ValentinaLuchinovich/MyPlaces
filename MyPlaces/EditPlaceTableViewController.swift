@@ -102,15 +102,23 @@ class EditPlaceTableViewController: UITableViewController {
     // MARK: Navigation
     // Метод передает информацию о завидении при переходе на MapViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier != "showMap" { return }
-        // Если предыдущее условие не сработаеит, то создаем экземпляр класса
-        let mapVC = segue.destination as! MapViewController
-        // Передаем значения на MapViewController
-        mapVC.place.name = placeName.text!
-        mapVC.place.location = placeLocation.text
-        mapVC.place.myDescription = placeDescription.text
-        mapVC.place.imageData = placeImage.image?.pngData()
+        //Извлекаем идентификатор сигвея
+        guard
+            let identifier = segue.identifier,
+            let mapVC = segue.destination as? MapViewController
+            else { return }
+        mapVC.incomeSegueIdentifire = identifier
         
+        // Создаем экзампляр класса MapViewController
+        mapVC.mapViewControllerDelegate = self
+      
+        if identifier == "showPlace" {
+            // Передаем значения на MapViewController
+            mapVC.place.name = placeName.text!
+            mapVC.place.location = placeLocation.text
+            mapVC.place.myDescription = placeDescription.text
+            mapVC.place.imageData = placeImage.image?.pngData()
+        }
     }
 }
 
@@ -215,5 +223,11 @@ extension EditPlaceTableViewController: UIImagePickerControllerDelegate, UINavig
         imageIsChanged = true
         // Закрываем imagePicker Controller
         dismiss(animated: true)
+    }
+}
+
+extension EditPlaceTableViewController: MapViewControllerDelegate {
+    func getAddress(_ address: String?) {
+        placeLocation.text = address
     }
 }

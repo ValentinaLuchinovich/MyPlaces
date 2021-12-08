@@ -159,7 +159,7 @@
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="map3" title=""/>
                                                     <connections>
-                                                        <segue destination="vD0-Nc-svL" kind="presentation" identifier="showMap" id="RC2-5C-Y9B"/>
+                                                        <segue destination="vD0-Nc-svL" kind="presentation" identifier="showPlace" id="RC2-5C-Y9B"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -216,16 +216,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="U3C-OB-EYh">
-                                                    <rect key="frame" x="15" y="8" width="384" height="63"/>
+                                                    <rect key="frame" x="15" y="8" width="349" height="63"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u4j-4I-OpF">
-                                                            <rect key="frame" x="0.0" y="0.0" width="384" height="28.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="349" height="28.5"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Thin" family="Apple SD Gothic Neo" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" placeholder="Place location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jR8-Od-ZA1">
-                                                            <rect key="frame" x="0.0" y="36.5" width="384" height="26.5"/>
+                                                            <rect key="frame" x="0.0" y="36.5" width="349" height="26.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                             <connections>
@@ -234,11 +234,27 @@
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtA-UZ-yBa">
+                                                    <rect key="frame" x="372" y="47" width="22" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="22" id="ALo-Gs-ABf"/>
+                                                        <constraint firstAttribute="height" constant="22" id="k7v-0g-CDC"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain">
+                                                        <imageReference key="image" image="location.magnifyingglass" catalog="system" symbolScale="large"/>
+                                                    </buttonConfiguration>
+                                                    <connections>
+                                                        <segue destination="vD0-Nc-svL" kind="presentation" identifier="getAdress" id="AGx-D8-5Jh"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="DtA-UZ-yBa" firstAttribute="centerY" secondItem="jR8-Od-ZA1" secondAttribute="centerY" id="7fw-Cj-uzG"/>
                                                 <constraint firstAttribute="bottom" secondItem="U3C-OB-EYh" secondAttribute="bottom" constant="4" id="Aff-X5-bZf"/>
                                                 <constraint firstItem="U3C-OB-EYh" firstAttribute="top" secondItem="YAw-DW-yhg" secondAttribute="top" constant="8" id="ORj-82-x2X"/>
-                                                <constraint firstAttribute="trailing" secondItem="U3C-OB-EYh" secondAttribute="trailing" constant="15" id="af9-TA-GUQ"/>
+                                                <constraint firstItem="DtA-UZ-yBa" firstAttribute="leading" secondItem="U3C-OB-EYh" secondAttribute="trailing" constant="8" id="PUE-sv-3N3"/>
+                                                <constraint firstItem="DtA-UZ-yBa" firstAttribute="trailing" secondItem="YAw-DW-yhg" secondAttribute="trailingMargin" id="QGM-Ta-1Kq"/>
                                                 <constraint firstItem="U3C-OB-EYh" firstAttribute="leading" secondItem="YAw-DW-yhg" secondAttribute="leading" constant="15" id="bXC-e3-3fD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -313,7 +329,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ap5-71-IjH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="L7A-hp-Oks" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2187" y="35"/>
+            <point key="canvasLocation" x="2186.9565217391305" y="34.821428571428569"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="m6W-oA-Lf3">
@@ -369,21 +385,63 @@
                                     <action selector="centerViewInUserLocation" destination="vD0-Nc-svL" eventType="touchUpInside" id="Fwc-sT-22K"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HWh-Dk-7QR">
+                                <rect key="frame" x="187" y="418.5" width="40" height="44.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="NsN-oO-ni3"/>
+                                    <constraint firstAttribute="width" constant="40" id="isX-au-uFh"/>
+                                </constraints>
+                                <imageReference key="image" image="mappin" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
+                                    <hierarchicalColors>
+                                        <color systemColor="labelColor"/>
+                                        <color systemColor="secondaryLabelColor"/>
+                                        <color systemColor="tertiaryLabelColor"/>
+                                    </hierarchicalColors>
+                                </imageReference>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущий адрес" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="37T-VM-A3R">
+                                <rect key="frame" x="0.0" y="220" width="414" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbr-nU-ZA9">
+                                <rect key="frame" x="145.5" y="719" width="123" height="49"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Готово">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                    <color key="baseForegroundColor" systemColor="labelColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="doneButtonePressed" destination="vD0-Nc-svL" eventType="touchUpInside" id="N1Y-Ff-3Af"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZuG-Nl-jl2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="37T-VM-A3R" firstAttribute="centerX" secondItem="Q2l-Ou-KoB" secondAttribute="centerX" id="1jz-Ga-X1a"/>
                             <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" secondItem="ohq-GR-j2u" secondAttribute="trailing" constant="20" id="1qy-zb-boh"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="leading" secondItem="ZuG-Nl-jl2" secondAttribute="leading" id="5Ur-zg-cVB"/>
+                            <constraint firstItem="HWh-Dk-7QR" firstAttribute="centerY" secondItem="Q2l-Ou-KoB" secondAttribute="centerY" constant="20" id="Dfc-s2-D1Q"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="trailing" secondItem="ZuG-Nl-jl2" secondAttribute="trailing" id="NrZ-XZ-LAe"/>
+                            <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" secondItem="37T-VM-A3R" secondAttribute="trailing" id="Ov0-85-fRf"/>
+                            <constraint firstItem="HWh-Dk-7QR" firstAttribute="centerX" secondItem="Q2l-Ou-KoB" secondAttribute="centerX" id="RxE-Ua-WBP"/>
+                            <constraint firstItem="Sbr-nU-ZA9" firstAttribute="centerX" secondItem="Q2l-Ou-KoB" secondAttribute="centerX" id="anq-md-TNF"/>
+                            <constraint firstItem="37T-VM-A3R" firstAttribute="top" secondItem="Q2l-Ou-KoB" secondAttribute="top" constant="220" id="bUT-Qd-x3v"/>
                             <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" secondItem="KC7-sm-gMg" secondAttribute="trailing" constant="20" id="clu-Wh-Bw7"/>
                             <constraint firstAttribute="bottom" secondItem="DDR-Eg-gwc" secondAttribute="bottom" id="f0P-V0-lKK"/>
+                            <constraint firstItem="37T-VM-A3R" firstAttribute="leading" secondItem="ZuG-Nl-jl2" secondAttribute="leading" id="gzO-Nb-ASR"/>
+                            <constraint firstItem="ZuG-Nl-jl2" firstAttribute="bottom" secondItem="Sbr-nU-ZA9" secondAttribute="bottom" constant="40" id="jAw-WF-zYB"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="top" secondItem="Q2l-Ou-KoB" secondAttribute="top" id="lEC-Ch-F4d"/>
                             <constraint firstItem="ohq-GR-j2u" firstAttribute="top" secondItem="ZuG-Nl-jl2" secondAttribute="top" constant="20" id="vkP-cg-DzL"/>
                             <constraint firstAttribute="bottom" secondItem="KC7-sm-gMg" secondAttribute="bottom" constant="40" id="wxh-ZG-JIN"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="37T-VM-A3R" id="8gL-mZ-cGQ"/>
+                        <outlet property="doneButtone" destination="Sbr-nU-ZA9" id="Spc-mf-Kak"/>
+                        <outlet property="mapPinImage" destination="HWh-Dk-7QR" id="oOK-wr-t4E"/>
                         <outlet property="mapView" destination="DDR-Eg-gwc" id="kUz-V8-92c"/>
                     </connections>
                 </viewController>
@@ -432,12 +490,15 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="AGx-D8-5Jh"/>
         <segue reference="KVf-0B-FIv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
+        <image name="location.magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="map3" width="100" height="100"/>
+        <image name="mappin" catalog="system" width="105" height="128"/>
         <image name="photo.artframe" catalog="system" width="128" height="93"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
