@@ -245,7 +245,7 @@
                                                         <imageReference key="image" image="location.magnifyingglass" catalog="system" symbolScale="large"/>
                                                     </buttonConfiguration>
                                                     <connections>
-                                                        <segue destination="vD0-Nc-svL" kind="presentation" identifier="getAdress" id="AGx-D8-5Jh"/>
+                                                        <segue destination="vD0-Nc-svL" kind="presentation" identifier="getAddress" id="AGx-D8-5Jh"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
