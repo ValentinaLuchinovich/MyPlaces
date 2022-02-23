@@ -10,7 +10,7 @@ import RealmSwift
 
 class TableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // Поиск. Свойство nil указывает на то, что отображение результатов поиска будет в томде контроллере, где и проходит сам поиск
+    // Поиск. Свойство nil указывает на то, что отображение результатов поиска будет в томже контроллере, где и проходит сам поиск
     private let searchController = UISearchController(searchResultsController: nil)
     // Массив с отфильтроваными записями из поиска
     private var filtredPlaces: Results<Place>!
@@ -45,6 +45,7 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         searchController.obscuresBackgroundDuringPresentation = false
         // Задаем название строки поиска
         searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.setValue("Отменить", forKey: "cancelButtonText")
         // Добавляем searchcontroller в navigation bar
         navigationItem.searchController = searchController
         // Отпускаем строку поиска при переходе на другой экран
