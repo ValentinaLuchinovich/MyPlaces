@@ -15,11 +15,13 @@ class EditPlaceTableViewController: UITableViewController {
     // Инициализируем экземпляр модели
     var imageIsChanged = false
     
+    var textChanged: ((String) -> Void)?
+    
     @IBOutlet var placeImage: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet var placeName: UITextField!
     @IBOutlet var placeLocation: UITextField!
-    @IBOutlet var placeDescription: UITextField!
+    @IBOutlet var placeDescription: UITextView!
     
     
     override func viewDidLoad() {
@@ -30,6 +32,23 @@ class EditPlaceTableViewController: UITableViewController {
         placeName.addTarget(self, action: #selector(textFieldChanged), for: .editingChanged)
         // Вызываем метод добавляющий информацию из ячейки на экран редактирования
         setupEditScreen()
+        
+        // Настройка textView
+        placeDescription.delegate = self
+        placeDescription.isScrollEnabled = true
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        let flexibleSpcae = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneButtonPressed(_:)))
+        keyboardToolbar.items = [flexibleSpcae, doneButton]
+        
+        placeDescription.inputAccessoryView = keyboardToolbar
+        
+        UIView.setAnimationsEnabled(false)
+    }
+    
+    @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
+        placeDescription.resignFirstResponder()
     }
     
     // Метод отвечает за сохранение заполненных полей в свойства модели
@@ -119,6 +138,15 @@ class EditPlaceTableViewController: UITableViewController {
             mapVC.place.myDescription = placeDescription.text
             mapVC.place.imageData = placeImage.image?.pngData()
         }
+    }
+}
+
+// MARK: Text view delegate
+
+extension EditPlaceTableViewController: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 

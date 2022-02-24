@@ -50,6 +50,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         navigationItem.searchController = searchController
         // Отпускаем строку поиска при переходе на другой экран
         definesPresentationContext = true
+        
+       
     }
     
 
