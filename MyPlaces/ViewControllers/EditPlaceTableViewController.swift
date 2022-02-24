@@ -141,15 +141,6 @@ class EditPlaceTableViewController: UITableViewController {
     }
 }
 
-// MARK: Text view delegate
-
-//extension EditPlaceTableViewController: UITextViewDelegate {
-//    func textViewDidChange(_ textView: UITextView) {
-//        tableView.beginUpdates()
-//        tableView.endUpdates()
-//    }
-//}
-
 // MARK: Text field delegate
 
 extension EditPlaceTableViewController: UITextFieldDelegate {

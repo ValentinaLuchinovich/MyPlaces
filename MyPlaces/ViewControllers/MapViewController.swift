@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
     var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     var annotetionIdentifire = "annotetionIdentifire"
+    let locationManager = CLLocationManager()
     
   
     // Идентификатор определяющий какой метод нужно выбрать
@@ -34,6 +35,8 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         setupMapView()
 //        // Убираем из зоны видимости стандартные логотипы карты Apple
 //        mapView.layoutMargins.bottom = -100
