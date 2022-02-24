@@ -137,7 +137,7 @@
             <objects>
                 <tableViewController id="w8h-hr-0kJ" customClass="EditPlaceTableViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2MS-DG-oUL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="separatorColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -264,9 +264,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aPV-X5-i68">
-                                                    <rect key="frame" x="15" y="40" width="384" height="252"/>
-                                                    <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Добавить рассказ" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="aPV-X5-i68">
+                                                    <rect key="frame" x="12" y="40" width="387" height="252"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="252" id="TPC-iH-0pn"/>
                                                     </constraints>
@@ -282,7 +281,7 @@
                                                 <constraint firstAttribute="bottom" secondItem="aPV-X5-i68" secondAttribute="bottom" constant="8" id="Gto-hX-Wmf"/>
                                                 <constraint firstItem="DdW-UM-CFQ" firstAttribute="top" secondItem="Q9n-Tg-dig" secondAttribute="top" constant="8" id="IQf-Nj-ZeL"/>
                                                 <constraint firstAttribute="trailing" secondItem="aPV-X5-i68" secondAttribute="trailing" constant="15" id="ckl-Jl-PQ6"/>
-                                                <constraint firstItem="aPV-X5-i68" firstAttribute="leading" secondItem="Q9n-Tg-dig" secondAttribute="leading" constant="15" id="gTd-tH-XFJ"/>
+                                                <constraint firstItem="aPV-X5-i68" firstAttribute="leading" secondItem="Q9n-Tg-dig" secondAttribute="leading" constant="12" id="gTd-tH-XFJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -294,9 +293,7 @@
                             <outlet property="delegate" destination="w8h-hr-0kJ" id="zcK-rP-5Ki"/>
                         </connections>
                     </tableView>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="lmj-0o-Dlp"/>
-                    </toolbarItems>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="New Place" largeTitleDisplayMode="always" id="OGP-GH-eMZ">
                         <barButtonItem key="leftBarButtonItem" title="Отменить" id="pXa-vk-9cI">
                             <color key="tintColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -485,7 +482,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="RC2-5C-Y9B"/>
-        <segue reference="KVf-0B-FIv"/>
+        <segue reference="GAv-K7-G59"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>

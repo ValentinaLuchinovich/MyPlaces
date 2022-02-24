@@ -34,7 +34,7 @@ class EditPlaceTableViewController: UITableViewController {
         setupEditScreen()
         
         // Настройка textView
-        placeDescription.delegate = self
+//        placeDescription.delegate = self
         placeDescription.isScrollEnabled = true
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
@@ -143,12 +143,12 @@ class EditPlaceTableViewController: UITableViewController {
 
 // MARK: Text view delegate
 
-extension EditPlaceTableViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
-    }
-}
+//extension EditPlaceTableViewController: UITextViewDelegate {
+//    func textViewDidChange(_ textView: UITextView) {
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
+//    }
+//}
 
 // MARK: Text field delegate
 
