@@ -76,7 +76,6 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Добавляем в ячеку по индексу информацию из массива citysName
         cell.nameLabel.text = place.name
         cell.locationLabel.text = place.location
-        cell.descriptionLabel.text = place.myDescription
 
         // Добавляем в ячейку изображение
         cell.imageOfPlace.image = UIImage(data: place.imageData!)

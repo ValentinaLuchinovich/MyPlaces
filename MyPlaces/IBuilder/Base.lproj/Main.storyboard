@@ -52,20 +52,14 @@
                                                     <rect key="frame" x="95" y="8" width="304" height="69"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Название" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5be-ay-PFC">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="25.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="36"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Геопозиция" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNY-Kh-dUs">
-                                                            <rect key="frame" x="0.0" y="27.5" width="304" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="38" width="304" height="31"/>
                                                             <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlL-5P-wgm">
-                                                            <rect key="frame" x="0.0" y="50" width="304" height="19"/>
-                                                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="13"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
@@ -82,7 +76,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="tlL-5P-wgm" id="dYd-eK-lAi"/>
                                             <outlet property="imageOfPlace" destination="q9C-Uu-bV6" id="avA-88-0Vw"/>
                                             <outlet property="locationLabel" destination="vNY-Kh-dUs" id="esd-ey-DiU"/>
                                             <outlet property="nameLabel" destination="5be-ay-PFC" id="5H2-er-L5i"/>
@@ -137,7 +130,7 @@
             <objects>
                 <tableViewController id="w8h-hr-0kJ" customClass="EditPlaceTableViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="2MS-DG-oUL">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="separatorColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -482,7 +475,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="RC2-5C-Y9B"/>
-        <segue reference="GAv-K7-G59"/>
+        <segue reference="KVf-0B-FIv"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
