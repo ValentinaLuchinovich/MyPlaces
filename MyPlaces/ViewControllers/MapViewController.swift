@@ -35,8 +35,8 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
-        // Убираем из зоны видимости стандартные логотипы карты Apple
-        mapView.layoutMargins.bottom = -100
+//        // Убираем из зоны видимости стандартные логотипы карты Apple
+//        mapView.layoutMargins.bottom = -100
         // По умолчанию делаем строку с адресом пустой
         addressLabel.text = ""
     }
