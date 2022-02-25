@@ -137,7 +137,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="nlu-1t-UGe" kind="relationship" relationship="viewControllers" id="BKc-2o-Cs5"/>
-                        <segue destination="vD0-Nc-svL" kind="relationship" relationship="viewControllers" id="wNe-eU-OBL"/>
+                        <segue destination="xZ1-1o-5im" kind="relationship" relationship="viewControllers" id="csV-qb-a7x"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Or-f5-sAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -339,17 +339,17 @@
             <objects>
                 <viewController id="vD0-Nc-svL" customClass="MapViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q2l-Ou-KoB">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DDR-Eg-gwc">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                                 <connections>
                                     <outlet property="delegate" destination="vD0-Nc-svL" id="Jce-uZ-bw6"/>
                                 </connections>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-GR-j2u">
-                                <rect key="frame" x="354" y="64" width="40" height="40"/>
+                                <rect key="frame" x="354" y="20" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="Bsl-cH-rw3"/>
                                     <constraint firstAttribute="height" constant="40" id="CjF-5k-kPv"/>
@@ -369,7 +369,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KC7-sm-gMg">
-                                <rect key="frame" x="344" y="806" width="50" height="50"/>
+                                <rect key="frame" x="344" y="752" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Ihk-fW-Ofi"/>
                                     <constraint firstAttribute="width" constant="50" id="ONl-1K-g32"/>
@@ -389,7 +389,7 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HWh-Dk-7QR">
-                                <rect key="frame" x="187" y="444.5" width="40" height="46.5"/>
+                                <rect key="frame" x="187" y="417.5" width="40" height="46.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="NsN-oO-ni3"/>
                                     <constraint firstAttribute="width" constant="40" id="isX-au-uFh"/>
@@ -409,7 +409,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sbr-nU-ZA9">
-                                <rect key="frame" x="145.5" y="724" width="123" height="49"/>
+                                <rect key="frame" x="145.5" y="719" width="123" height="49"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Готово">
                                     <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
@@ -483,7 +483,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Pvv-nn-BpB">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ie1-dG-Uy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ey7-RW-GTt" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jc9-Pg-9gF">
@@ -495,12 +494,45 @@
                         <segue destination="w8h-hr-0kJ" kind="relationship" relationship="rootViewController" id="GAv-K7-G59"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ie1-dG-Uy0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2238" y="-652"/>
         </scene>
+        <!--All Places Map View Controller-->
+        <scene sceneID="pPl-vq-Edk">
+            <objects>
+                <viewController id="xZ1-1o-5im" customClass="AllPlacesMapViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2iE-59-gzI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="F4T-c5-wYt">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tHn-lt-sW0"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="tHn-lt-sW0" firstAttribute="trailing" secondItem="F4T-c5-wYt" secondAttribute="trailing" id="8Qo-tq-Bd8"/>
+                            <constraint firstItem="F4T-c5-wYt" firstAttribute="top" secondItem="2iE-59-gzI" secondAttribute="top" id="Kag-7S-mP1"/>
+                            <constraint firstItem="F4T-c5-wYt" firstAttribute="leading" secondItem="tHn-lt-sW0" secondAttribute="leading" id="ntG-t7-me0"/>
+                            <constraint firstItem="tHn-lt-sW0" firstAttribute="bottom" secondItem="F4T-c5-wYt" secondAttribute="bottom" id="pes-IR-MUs"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="vST-ya-Cd0">
+                        <imageReference key="image" image="globe.asia.australia.fill" catalog="system" renderingMode="original"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="mapView" destination="F4T-c5-wYt" id="frC-WI-p67"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yw2-TZ-nDH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3200" y="-652"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="wNe-eU-OBL"/>
+        <segue reference="RC2-5C-Y9B"/>
         <segue reference="GAv-K7-G59"/>
     </inferredMetricsTieBreakers>
     <resources>
