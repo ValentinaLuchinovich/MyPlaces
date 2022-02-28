@@ -47,6 +47,10 @@ class EditPlaceTableViewController: UITableViewController {
         UIView.setAnimationsEnabled(false)
     }
     
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
         placeDescription.resignFirstResponder()
     }

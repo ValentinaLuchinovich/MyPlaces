@@ -45,6 +45,7 @@ class MapManager {
             mapView.showAnnotations([annotation], animated: true)
             //  Выделяем созданную аннотацию
             mapView.selectAnnotation(annotation, animated: true)
+            
         }
     }
     

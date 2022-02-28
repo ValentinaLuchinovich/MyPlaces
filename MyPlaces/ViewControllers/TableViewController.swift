@@ -29,11 +29,13 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    
     @IBOutlet var tableView: UITableView!
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var reversedSortingButtom: UIBarButtonItem!
     
     override func viewDidLoad() {
+        UITabBar.appearance().backgroundColor = .blue
         super.viewDidLoad()
         // Отрбражаем на экране данные
         places = realm.objects(Place.self)
@@ -82,6 +84,8 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
 
         return cell
     }
+    
+    
     
     // MARK: Table view delegate
     
