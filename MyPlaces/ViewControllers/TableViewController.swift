@@ -99,6 +99,27 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
         // Определяем объект для удаления
         let place = places[indexPath.row]
         // Определяем действие при свайпе
+        let editAction = UIContextualAction(style: .normal, title: "Изменить") { [self] _, _, _ in
+            if let editViewController = storyboard?.instantiateViewController(withIdentifier: "EditPlaceTableViewController") as? UINavigationController {
+                present(editViewController, animated: true, completion: nil)
+//                guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//              Передаем разные данные в зависимости от того активирована ли строка поиска
+                let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
+                let editPlace = editViewController.topViewController as! EditPlaceTableViewController
+                editPlace.currentPlace = place
+                
+//              self.performSegue(withIdentifier: "showDeteil", sender: nil)
+            }
+//            let segue = UIStoryboardSegue(identifier: "edit", source: tableViewController, destination: editViewController)
+//            if segue.identifier == "showDeteil" {
+//                guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//                // Передаем разные данные в зависимости от того активирована ли строка поиска
+//                let place = self.isFiltering ? self.filtredPlaces[indexPath.row] : self.places[indexPath.row]
+//                let newPlaceVC = segue.destination as! EditPlaceTableViewController
+//                newPlaceVC.currentPlace = place
+//                self.performSegue(withIdentifier: "showDeteil", sender: nil)
+//            }
+        }
         let deleteAction = UIContextualAction(style: .destructive, title: "Удалить") { (_, _, _) in
             // Удаляем объект из базы
             StorageManager.deleteObject(place)
@@ -106,22 +127,22 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
         // Задаем действие свайпу
-        let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction])
+        let swipeAction = UISwipeActionsConfiguration(actions: [deleteAction, editAction])
         return swipeAction
     }
     
     //MARK: Navigation
     
     // При нажатии на ячеку будет выводиться экран редактирования, но уже с переданной туда информацией имеющейся в ячейке
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDeteil" {
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            // Передаем разные данные в зависимости от того активирована ли строка поиска
-            let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
-            let newPlaceVC = segue.destination as! EditPlaceTableViewController
-            newPlaceVC.currentPlace = place
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "showDeteil" {
+//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//            // Передаем разные данные в зависимости от того активирована ли строка поиска
+//            let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
+//            let newPlaceVC = segue.destination as! EditPlaceTableViewController
+//            newPlaceVC.currentPlace = place
+//        }
+//    }
 
     // Объявляем метод, который при нажатии на кнопку сохранения выводит нас на главный экран при помощи сигвея
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {

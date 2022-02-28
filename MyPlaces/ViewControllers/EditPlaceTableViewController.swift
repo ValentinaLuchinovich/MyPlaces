@@ -51,6 +51,10 @@ class EditPlaceTableViewController: UITableViewController {
         return 0
     }
     
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
     @objc func doneButtonPressed(_ sender: UIBarButtonItem) {
         placeDescription.resignFirstResponder()
     }
