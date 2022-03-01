@@ -8,22 +8,24 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
+    
+    var currentPlace: Place?
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var placeImage: UIImageView!
+    @IBOutlet weak var placeDescription: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        dataTransfer()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func dataTransfer() {
+        guard let data = currentPlace?.imageData, let image = UIImage(data: data) else { return }
+        placeImage.image = image
+        placeImage.contentMode = .scaleAspectFill
+        nameLabel.text = currentPlace?.name
+        placeDescription.text = currentPlace?.myDescription
     }
-    */
 
 }

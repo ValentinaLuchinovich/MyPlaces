@@ -134,15 +134,15 @@ class TableViewController: UIViewController, UITableViewDataSource, UITableViewD
     //MARK: Navigation
     
     // При нажатии на ячеку будет выводиться экран редактирования, но уже с переданной туда информацией имеющейся в ячейке
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "showDeteil" {
-//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            // Передаем разные данные в зависимости от того активирована ли строка поиска
-//            let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
-//            let newPlaceVC = segue.destination as! EditPlaceTableViewController
-//            newPlaceVC.currentPlace = place
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDeteil" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            // Передаем разные данные в зависимости от того активирована ли строка поиска
+            let place = isFiltering ? filtredPlaces[indexPath.row] : places[indexPath.row]
+            let newPlaceVC = segue.destination as! DetailViewController
+            newPlaceVC.currentPlace = place
+        }
+    }
 
     // Объявляем метод, который при нажатии на кнопку сохранения выводит нас на главный экран при помощи сигвея
     @IBAction func unwindSegue(_ segue: UIStoryboardSegue) {
