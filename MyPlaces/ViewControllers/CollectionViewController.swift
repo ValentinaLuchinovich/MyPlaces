@@ -6,15 +6,17 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CollectionViewController: UIViewController {
 
+    private var places: Results<Place>!
+    
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        places = realm.objects(Place.self)
     }
 
 }
@@ -22,12 +24,19 @@ class CollectionViewController: UIViewController {
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return places.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photo", for: indexPath) as! CustomCollectionViewCell
+        cell.layer.cornerRadius = cell.photoImage.frame.size.height / 2
+        cell.contentMode = .scaleAspectFill
+        cell.photoImage.clipsToBounds = true
+        cell.photoImage.image = UIImage(data: places[indexPath.row].imageData!)
+        return cell
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        <#code#>
+    }
 }

@@ -233,22 +233,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-tr-cDB">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="59" width="414" height="754"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qME-GG-eZV">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qME-GG-eZV">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GkN-IT-dHw">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photo" id="GkN-IT-dHw" customClass="CustomCollectionViewCell" customModule="MyPlaces" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qcB-09-UaI">
                                             <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aug-bD-B9H">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Aug-bD-B9H" firstAttribute="leading" secondItem="qcB-09-UaI" secondAttribute="leading" id="CC1-GS-sbW"/>
+                                                <constraint firstAttribute="trailing" secondItem="Aug-bD-B9H" secondAttribute="trailing" id="OAm-2P-bHp"/>
+                                                <constraint firstAttribute="bottom" secondItem="Aug-bD-B9H" secondAttribute="bottom" id="Ttd-GA-J7b"/>
+                                                <constraint firstItem="Aug-bD-B9H" firstAttribute="top" secondItem="qcB-09-UaI" secondAttribute="top" id="feC-dg-DGQ"/>
+                                            </constraints>
                                         </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="photoImage" destination="Aug-bD-B9H" id="0q5-O8-4Ve"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -263,7 +277,7 @@
                             <constraint firstItem="xdL-tr-cDB" firstAttribute="leading" secondItem="LPS-2L-UP5" secondAttribute="leading" id="0x6-BW-xoR"/>
                             <constraint firstItem="xdL-tr-cDB" firstAttribute="trailing" secondItem="LPS-2L-UP5" secondAttribute="trailing" id="XBB-l7-qjL"/>
                             <constraint firstItem="xdL-tr-cDB" firstAttribute="bottom" secondItem="LPS-2L-UP5" secondAttribute="bottom" id="ZfG-hW-L9q"/>
-                            <constraint firstItem="xdL-tr-cDB" firstAttribute="top" secondItem="LPS-2L-UP5" secondAttribute="top" id="ss0-kH-1YL"/>
+                            <constraint firstItem="xdL-tr-cDB" firstAttribute="top" secondItem="LPS-2L-UP5" secondAttribute="top" constant="15" id="ss0-kH-1YL"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="U8I-lB-m4J">
