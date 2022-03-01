@@ -6,6 +6,7 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -214,6 +215,7 @@
                         <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="8Yw-Hv-tqL" kind="relationship" relationship="viewControllers" id="X1x-KN-oVk"/>
                         <segue destination="nlu-1t-UGe" kind="relationship" relationship="viewControllers" id="BKc-2o-Cs5"/>
                         <segue destination="xZ1-1o-5im" kind="relationship" relationship="viewControllers" id="csV-qb-a7x"/>
                     </connections>
@@ -221,6 +223,59 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Or-f5-sAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2239" y="-1377"/>
+        </scene>
+        <!--Collection View Controller-->
+        <scene sceneID="dbo-8n-Jjc">
+            <objects>
+                <viewController id="8Yw-Hv-tqL" customClass="CollectionViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lAy-Sb-0UD">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xdL-tr-cDB">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qME-GG-eZV">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="GkN-IT-dHw">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="qcB-09-UaI">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="8Yw-Hv-tqL" id="M22-L0-5fn"/>
+                                    <outlet property="delegate" destination="8Yw-Hv-tqL" id="kb6-c5-EQK"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="LPS-2L-UP5"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xdL-tr-cDB" firstAttribute="leading" secondItem="LPS-2L-UP5" secondAttribute="leading" id="0x6-BW-xoR"/>
+                            <constraint firstItem="xdL-tr-cDB" firstAttribute="trailing" secondItem="LPS-2L-UP5" secondAttribute="trailing" id="XBB-l7-qjL"/>
+                            <constraint firstItem="xdL-tr-cDB" firstAttribute="bottom" secondItem="LPS-2L-UP5" secondAttribute="bottom" id="ZfG-hW-L9q"/>
+                            <constraint firstItem="xdL-tr-cDB" firstAttribute="top" secondItem="LPS-2L-UP5" secondAttribute="top" id="ss0-kH-1YL"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" id="U8I-lB-m4J">
+                        <imageReference key="image" image="circle.grid.3x3" catalog="system" symbolScale="large" renderingMode="original"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="collectionView" destination="xdL-tr-cDB" id="16k-MP-hPe"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iK2-k0-Xke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3200.0000000000005" y="-1377.4553571428571"/>
         </scene>
         <!--New Place-->
         <scene sceneID="Zl7-g5-bSy">
@@ -621,6 +676,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.arrow.down.circle" catalog="system" width="128" height="121"/>
+        <image name="circle.grid.3x3" catalog="system" width="128" height="110"/>
         <image name="globe.asia.australia.fill" catalog="system" width="128" height="121"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="location.magnifyingglass" catalog="system" width="128" height="115"/>
