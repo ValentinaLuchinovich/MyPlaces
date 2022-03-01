@@ -130,7 +130,7 @@
         <!--Detail View Controller-->
         <scene sceneID="oAU-MZ-E0h">
             <objects>
-                <viewController id="3p1-wZ-tOW" customClass="DetailViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" id="3p1-wZ-tOW" customClass="DetailViewController" customModule="MyPlaces" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="c5H-lr-pUC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -203,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Hr-hn-zmq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1340.5797101449277" y="775.44642857142856"/>
+            <point key="canvasLocation" x="1342" y="837"/>
         </scene>
         <!--Tab View Controller-->
         <scene sceneID="oyB-AK-MbD">
@@ -222,7 +222,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Or-f5-sAb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2239" y="-1377"/>
+            <point key="canvasLocation" x="2238" y="-1377"/>
         </scene>
         <!--Collection View Controller-->
         <scene sceneID="dbo-8n-Jjc">
@@ -289,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iK2-k0-Xke" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3200.0000000000005" y="-1377.4553571428571"/>
+            <point key="canvasLocation" x="3200" y="-1377"/>
         </scene>
         <!--New Place-->
         <scene sceneID="Zl7-g5-bSy">

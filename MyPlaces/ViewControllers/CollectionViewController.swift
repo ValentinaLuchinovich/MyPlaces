@@ -36,7 +36,11 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         return cell
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        <#code#>
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let editViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
+            let place = places[indexPath.row]
+            editViewController.currentPlace = place
+            present(editViewController, animated: true, completion: nil)
+        }
     }
 }
