@@ -10,6 +10,7 @@
 		6E041E9127C8DD9C00E19292 /* AllPlacesMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E041E9027C8DD9C00E19292 /* AllPlacesMapViewController.swift */; };
 		6E2BBF1127563040004CF76E /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2BBF1027563040004CF76E /* StorageManager.swift */; };
 		6E4A846327CCF67C000C75AF /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A846227CCF67C000C75AF /* TabViewController.swift */; };
+		6E4A846527CD8691000C75AF /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4A846427CD8691000C75AF /* DetailViewController.swift */; };
 		6E5120C02751323F002BD7AF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5120BF2751323F002BD7AF /* AppDelegate.swift */; };
 		6E5120C22751323F002BD7AF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5120C12751323F002BD7AF /* SceneDelegate.swift */; };
 		6E5120C42751323F002BD7AF /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5120C32751323F002BD7AF /* TableViewController.swift */; };
@@ -29,6 +30,7 @@
 		6E041E9027C8DD9C00E19292 /* AllPlacesMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllPlacesMapViewController.swift; sourceTree = "<group>"; };
 		6E2BBF1027563040004CF76E /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		6E4A846227CCF67C000C75AF /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		6E4A846427CD8691000C75AF /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		6E5120BC2751323F002BD7AF /* MyPlaces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyPlaces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E5120BF2751323F002BD7AF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E5120C12751323F002BD7AF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,9 +93,10 @@
 				6E5120C32751323F002BD7AF /* TableViewController.swift */,
 				6EA7CA5B2754DFB600EBB226 /* EditPlaceTableViewController.swift */,
 				6EEF7288275AC452001C6F44 /* MapViewController.swift */,
-				6E519C892752CD1800DBFB39 /* CustomTableViewCell.swift */,
 				6E041E9027C8DD9C00E19292 /* AllPlacesMapViewController.swift */,
 				6E4A846227CCF67C000C75AF /* TabViewController.swift */,
+				6E4A846427CD8691000C75AF /* DetailViewController.swift */,
+				6E519C892752CD1800DBFB39 /* CustomTableViewCell.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E4A846527CD8691000C75AF /* DetailViewController.swift in Sources */,
 				6E5120C42751323F002BD7AF /* TableViewController.swift in Sources */,
 				6E5120C02751323F002BD7AF /* AppDelegate.swift in Sources */,
 				6E7E071A2753CE6D00694B8F /* PlaceModel.swift in Sources */,
