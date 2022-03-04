@@ -17,14 +17,32 @@ class AllPlacesMapViewController: UIViewController {
     var places = realm.objects(Place.self)
     let mapManager = MapManager()
     let annotationIdentifire = "annotetionID"
+    let regionRadius: Double = 8000000
+   
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        for place in places {
-            mapManager.setupPlacemark(place: place, mapView: mapView)
-        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        mapView.mapType = .hybridFlyover
+        mapView.removeAnnotations(mapView.annotations)
+        for place in places {
+            let annotation = MKPointAnnotation()
+            mapManager.setupPlacemark(place: place, mapView: mapView, annotation: annotation)
+            mapView.showAnnotations([annotation], animated: true)
+        }
+        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake(40, 3), latitudinalMeters: regionRadius, longitudinalMeters: regionRadius), animated: true)
+       
+    }
+    
+    @IBAction func myLocationButton(_ sender: Any) {
+        mapManager.showUserLocation(mapView: mapView, latitudinalMeters: mapManager.regionInMetrs, longitudinalMeters: mapManager.regionInMetrs)
+    }
+    
 }
 
 extension AllPlacesMapViewController: MKMapViewDelegate {
@@ -36,6 +54,9 @@ extension AllPlacesMapViewController: MKMapViewDelegate {
         }
         annotationView?.canShowCallout = true
         annotationView?.markerTintColor = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
+        
         return annotationView
     }
+    
+    
 }

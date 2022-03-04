@@ -23,6 +23,7 @@ class MapViewController: UIViewController {
     @IBOutlet var doneButtone: UIButton!
     
     let mapManager = MapManager()
+    let annotation = MKPointAnnotation()
     var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     var annotetionIdentifire = "annotetionIdentifire"
@@ -44,7 +45,7 @@ class MapViewController: UIViewController {
 
     // Переход на участок карты где находится пользователь
     @IBAction func centerViewInUserLocation() {
-        mapManager.showUserLocation(mapView: mapView)
+        mapManager.showUserLocation(mapView: mapView, latitudinalMeters: mapManager.regionInMetrs, longitudinalMeters: mapManager.regionInMetrs)
     }
     
     // При нажатии выполняется передача данных из MapViewController в EditPlaceTableViewController
@@ -62,7 +63,8 @@ class MapViewController: UIViewController {
     // Метод для настройки карты в зависимости от свойства incomeSegueIdentifire
     private func setupMapView() {
         if incomeSegueIdentifire == "showPlace" {
-            mapManager.setupPlacemark(place: place, mapView: mapView)
+            mapManager.setupPlacemark(place: place, mapView: mapView, annotation: annotation)
+            mapView.showAnnotations([annotation], animated: true)
             // скрываеь mapPin при переходе по методу showPlace
             mapPinImage.isHidden = true
             // скрываем лейбл с адресом

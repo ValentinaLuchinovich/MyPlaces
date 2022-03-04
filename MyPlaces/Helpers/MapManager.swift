@@ -10,12 +10,13 @@ import MapKit
 
 class MapManager {
     // Менеджер для управления действиями связанными с местоположением пользователя
-    let locationManager = CLLocationManager()
+    var locationManager = CLLocationManager()
+    
     // Параметр для масштаба карты
-    private let regionInMetrs = 1000.0
+    let regionInMetrs = 500.0
     
     // Настройки маркера места
-    func setupPlacemark(place: Place, mapView: MKMapView) {
+    func setupPlacemark(place: Place, mapView: MKMapView, annotation: MKPointAnnotation) {
         // Извлекаем адрес
         guard let location = place.location else { return }
         // Создаем экземпляр класса CLGeocoder, который отвечает за преобразование географических координат и названий
@@ -32,7 +33,7 @@ class MapManager {
             let placemark = placemarks.first
             
             //Описываем точку на карте
-            let annotation = MKPointAnnotation()
+            let annotation = annotation
             annotation.title = place.name
             annotation.subtitle = place.location
             
@@ -42,7 +43,7 @@ class MapManager {
             annotation.coordinate = placemarkLocation.coordinate
             
             // Задаем размер карты таким образом, чтобы на ней были видны все собранные аннотации
-            mapView.showAnnotations([annotation], animated: true)
+//            mapView.showAnnotations([annotation], animated: true)
             //  Выделяем созданную аннотацию
             mapView.selectAnnotation(annotation, animated: true)
             
@@ -72,7 +73,7 @@ class MapManager {
         switch locationManager.authorizationStatus {
         case .authorizedWhenInUse:
             mapView.showsUserLocation = true
-            if segueIdentifire == "getAddress" { showUserLocation(mapView: mapView) }
+            if segueIdentifire == "getAddress" { showUserLocation(mapView: mapView, latitudinalMeters: regionInMetrs, longitudinalMeters: regionInMetrs) }
             break
         case .notDetermined:
             // Запрос на использование геолокации
@@ -102,13 +103,13 @@ class MapManager {
     }
     
     // Метод отвечает за фокус карты на местоположении пользователя
-    func showUserLocation(mapView: MKMapView) {
+    func showUserLocation(mapView: MKMapView, latitudinalMeters: Double, longitudinalMeters: Double) {
         // Если у получается определить местоположение пользователя
         if let location = locationManager.location?.coordinate {
         // то определяем регион для позиционирования карты с местоположением пользователя в центре
             let region = MKCoordinateRegion(center: location,
-                                            latitudinalMeters: regionInMetrs,
-                                            longitudinalMeters: regionInMetrs)
+                                            latitudinalMeters: latitudinalMeters,
+                                            longitudinalMeters: longitudinalMeters)
             // Устонавливаем регион местоположения на экране
             mapView.setRegion(region, animated: true)
         }

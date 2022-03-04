@@ -215,8 +215,8 @@
                         <color key="backgroundColor" red="1" green="0.83234566450000003" blue="0.47320586440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="8Yw-Hv-tqL" kind="relationship" relationship="viewControllers" id="X1x-KN-oVk"/>
                         <segue destination="nlu-1t-UGe" kind="relationship" relationship="viewControllers" id="BKc-2o-Cs5"/>
+                        <segue destination="8Yw-Hv-tqL" kind="relationship" relationship="viewControllers" id="X1x-KN-oVk"/>
                         <segue destination="xZ1-1o-5im" kind="relationship" relationship="viewControllers" id="csV-qb-a7x"/>
                     </connections>
                 </tabBarController>
@@ -663,6 +663,22 @@
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="F4T-c5-wYt">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPm-rd-s5D">
+                                <rect key="frame" x="349" y="762" width="45" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <imageReference key="image" image="location.circle" catalog="system" symbolScale="large" renderingMode="hierarchical-single">
+                                        <hierarchicalColors>
+                                            <color systemColor="labelColor"/>
+                                            <color systemColor="secondaryLabelColor"/>
+                                            <color systemColor="tertiaryLabelColor"/>
+                                        </hierarchicalColors>
+                                    </imageReference>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="myLocationButton:" destination="xZ1-1o-5im" eventType="touchUpInside" id="2Ct-8t-Rrb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tHn-lt-sW0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -671,6 +687,8 @@
                             <constraint firstItem="F4T-c5-wYt" firstAttribute="top" secondItem="2iE-59-gzI" secondAttribute="top" id="Kag-7S-mP1"/>
                             <constraint firstItem="F4T-c5-wYt" firstAttribute="leading" secondItem="tHn-lt-sW0" secondAttribute="leading" id="ntG-t7-me0"/>
                             <constraint firstItem="tHn-lt-sW0" firstAttribute="bottom" secondItem="F4T-c5-wYt" secondAttribute="bottom" id="pes-IR-MUs"/>
+                            <constraint firstItem="tHn-lt-sW0" firstAttribute="bottom" secondItem="HPm-rd-s5D" secondAttribute="bottom" constant="20" id="yGl-jd-jRt"/>
+                            <constraint firstItem="tHn-lt-sW0" firstAttribute="trailing" secondItem="HPm-rd-s5D" secondAttribute="trailing" constant="20" id="zMc-5T-oHa"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="vST-ya-Cd0">
