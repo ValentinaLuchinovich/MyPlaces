@@ -79,10 +79,10 @@ extension MapViewController: MKMapViewDelegate {
         // Исключаем возможность, что данная аннотация является текущем местоположением пользователя
         guard !(annotation is MKUserLocation) else { return nil}
         // Объект представляющий вью с аннотацией на карте, который будет переиспользоваться
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotetionIdentifire) as? MKPinAnnotationView
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotetionIdentifire) as? MKMarkerAnnotationView
         //В случае если  у нас нет представления с аннотацией, которое можно переиспользовать - создаем новую
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: annotetionIdentifire)
+            annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: annotetionIdentifire)
             // Присваем значение true, чтобы иметь возможность отобразить аннотацию ввиде баннера
             annotationView?.canShowCallout = true
         }
@@ -101,6 +101,7 @@ extension MapViewController: MKMapViewDelegate {
             // Отображаем image view на баннере
             annotationView?.rightCalloutAccessoryView = imageView
         }
+        annotationView?.markerTintColor = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
         return annotationView
     }
     

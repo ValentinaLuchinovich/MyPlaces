@@ -18,6 +18,11 @@ class CollectionViewController: UIViewController {
         super.viewDidLoad()
         places = realm.objects(Place.self)
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
+    }
 
 }
 
