@@ -18,12 +18,14 @@ class AllPlacesMapViewController: UIViewController {
     let mapManager = MapManager()
     let annotationIdentifire = "annotetionID"
     let regionRadius: Double = 8000000
+    var centerCoordinate = CLLocationCoordinate2DMake(42,12)
    
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,8 +37,9 @@ class AllPlacesMapViewController: UIViewController {
             mapManager.setupPlacemark(place: place, mapView: mapView, annotation: annotation)
             mapView.showAnnotations([annotation], animated: true)
         }
-        mapView.setRegion(MKCoordinateRegion(center: CLLocationCoordinate2DMake(40, 3), latitudinalMeters: regionRadius, longitudinalMeters: regionRadius), animated: true)
-       
+        DispatchQueue.main.async { [self] in
+            mapView.setRegion(MKCoordinateRegion(center: centerCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius), animated: true)
+        }
     }
     
     @IBAction func myLocationButton(_ sender: Any) {
