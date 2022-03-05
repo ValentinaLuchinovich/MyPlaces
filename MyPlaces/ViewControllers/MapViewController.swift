@@ -122,15 +122,18 @@ extension MapViewController: MKMapViewDelegate {
             guard let placemarks = placemarks else { return }
             let placemark = placemarks.first
             // Извлекаем улицу и номер дома
+            let cityName = placemark?.locality
             let streetName = placemark?.thoroughfare
             let buildNumber = placemark?.subThoroughfare
             
             // Обнавляем интервейс в основном потоке асинхронно
             DispatchQueue.main.async {
-                if streetName != nil && buildNumber != nil {
-                self.addressLabel.text = "\(streetName!), \(buildNumber!)"
-                } else if streetName != nil {
-                    self.addressLabel.text = "\(streetName!)"
+                if cityName != nil && streetName != nil && buildNumber != nil {
+                self.addressLabel.text = "\(cityName!), \(streetName!), \(buildNumber!)"
+                } else if cityName != nil && streetName != nil  {
+                    self.addressLabel.text = "\(cityName!), \(streetName!)"
+                } else if cityName != nil{
+                    self.addressLabel.text = "\(cityName!)"
                 } else {
                     self.addressLabel.text = ""
                 }
