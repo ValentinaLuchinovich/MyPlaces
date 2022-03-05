@@ -62,7 +62,7 @@ class EditPlaceTableViewController: UITableViewController {
     // Метод отвечает за сохранение заполненных полей в свойства модели
     func savePlace() {
         // Если изображение было изменено, то меняем маленькую версию картинки
-        let image = imageIsChanged ?placeImage.image : UIImage(systemName: "camera.circle")
+        let image = imageIsChanged ?placeImage.image : UIImage(named: "cmera.circle.yellow")
      
         // Конвертируем изображение в тип Data, чтобы избавиться от несоответствия типов
         let imageData = image?.pngData()
