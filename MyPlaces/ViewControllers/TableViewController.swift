@@ -61,6 +61,7 @@ class TableViewController: UIViewController {
         sorting()
     }
     
+    // Передача информации на DetailViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDeteil" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -83,6 +84,7 @@ class TableViewController: UIViewController {
 
 
 // MARK: - TableView data source
+
 extension TableViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
