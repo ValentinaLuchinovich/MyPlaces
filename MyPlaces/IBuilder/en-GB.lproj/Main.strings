@@ -1,0 +1,78 @@
+
+/* Class = "UILabel"; text = "Текущий адрес"; ObjectID = "37T-VM-A3R"; */
+"37T-VM-A3R.text" = "Текущий адрес";
+
+/* Class = "UILabel"; text = "Название"; ObjectID = "5be-ay-PFC"; */
+"5be-ay-PFC.text" = "Название";
+
+/* Class = "UILabel"; text = "Описание"; ObjectID = "DdW-UM-CFQ"; */
+"DdW-UM-CFQ.text" = "Описание";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "DtA-UZ-yBa"; */
+"DtA-UZ-yBa.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "GPt-h8-WEx"; */
+"GPt-h8-WEx.title" = "Сохранить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HPm-rd-s5D"; */
+"HPm-rd-s5D.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KC7-sm-gMg"; */
+"KC7-sm-gMg.normalTitle" = "Button";
+
+/* Class = "UISegmentedControl"; Lw2-sZ-Ntk.segmentTitles[0] = "Дата"; ObjectID = "Lw2-sZ-Ntk"; */
+"Lw2-sZ-Ntk.segmentTitles[0]" = "Дата";
+
+/* Class = "UISegmentedControl"; Lw2-sZ-Ntk.segmentTitles[1] = "Название"; ObjectID = "Lw2-sZ-Ntk"; */
+"Lw2-sZ-Ntk.segmentTitles[1]" = "Название";
+
+/* Class = "UINavigationItem"; title = "New Place"; ObjectID = "OGP-GH-eMZ"; */
+"OGP-GH-eMZ.title" = "New Place";
+
+/* Class = "UIButton"; configuration.title = "Готово"; ObjectID = "Sbr-nU-ZA9"; */
+"Sbr-nU-ZA9.configuration.title" = "Готово";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Sbr-nU-ZA9"; */
+"Sbr-nU-ZA9.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tfv-hG-V6Z"; */
+"Tfv-hG-V6Z.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "UAP-jL-5rH"; */
+"UAP-jL-5rH.title" = "Item";
+
+/* Class = "UILabel"; text = "descriptionLabel"; ObjectID = "Vnh-Bj-aKp"; */
+"Vnh-Bj-aKp.text" = "descriptionLabel";
+
+/* Class = "UINavigationItem"; title = "My Places"; ObjectID = "XRg-vB-ry0"; */
+"XRg-vB-ry0.title" = "My Places";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "aC6-z8-y6f"; */
+"aC6-z8-y6f.title" = "Item";
+
+/* Class = "UITextView"; text = "Добавить рассказ"; ObjectID = "aPV-X5-i68"; */
+"aPV-X5-i68.text" = "Добавить рассказ";
+
+/* Class = "UITextField"; placeholder = "Название"; ObjectID = "i8N-7S-u4M"; */
+"i8N-7S-u4M.placeholder" = "Название";
+
+/* Class = "UITextField"; placeholder = "Геопозиция"; ObjectID = "jR8-Od-ZA1"; */
+"jR8-Od-ZA1.placeholder" = "Геопозиция";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ohq-GR-j2u"; */
+"ohq-GR-j2u.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = "Отменить"; ObjectID = "pXa-vk-9cI"; */
+"pXa-vk-9cI.title" = "Отменить";
+
+/* Class = "UILabel"; text = "nameLabel"; ObjectID = "tja-GK-l6c"; */
+"tja-GK-l6c.text" = "nameLabel";
+
+/* Class = "UILabel"; text = "Геопозиция"; ObjectID = "u4j-4I-OpF"; */
+"u4j-4I-OpF.text" = "Геопозиция";
+
+/* Class = "UILabel"; text = "Название"; ObjectID = "v9f-FB-359"; */
+"v9f-FB-359.text" = "Название";
+
+/* Class = "UILabel"; text = "Геопозиция"; ObjectID = "vNY-Kh-dUs"; */
+"vNY-Kh-dUs.text" = "Геопозиция";

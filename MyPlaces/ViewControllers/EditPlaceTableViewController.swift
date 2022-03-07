@@ -11,7 +11,7 @@ class EditPlaceTableViewController: UITableViewController {
     
     var currentPlace: Place?
     // Инициализация экземпляра модели
-    var imageIsChanged = false
+    private var imageIsChanged = false
 
     var textChanged: ((String) -> Void)?
     

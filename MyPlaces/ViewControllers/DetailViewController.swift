@@ -27,5 +27,4 @@ class DetailViewController: UIViewController {
         nameLabel.text = currentPlace?.name
         placeDescription.text = currentPlace?.myDescription
     }
-
 }

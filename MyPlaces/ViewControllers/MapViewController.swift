@@ -17,12 +17,12 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
-    let mapManager = MapManager()
-    let annotation = MKPointAnnotation()
+    private let mapManager = MapManager()
+    private let annotation = MKPointAnnotation()
     var mapViewControllerDelegate: MapViewControllerDelegate?
     var place = Place()
     var incomeSegueIdentifire = ""
-    private var annotetionIdentifire = "annotetionIdentifire"
+    var annotetionIdentifire = "annotetionIdentifire"
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var mapPinImage: UIImageView!

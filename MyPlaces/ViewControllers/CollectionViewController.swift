@@ -23,8 +23,9 @@ class CollectionViewController: UIViewController {
         super.viewWillAppear(animated)
         collectionView.reloadData()
     }
-
 }
+
+// MARK: Data Sourse / Delegate
 
 extension CollectionViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
@@ -41,11 +42,12 @@ extension CollectionViewController: UICollectionViewDataSource, UICollectionView
         return cell
     }
     
+    // Переход по нажатию на DetailVC
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let editViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
+        if let detailViewController = storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController {
             let place = places[indexPath.row]
-            editViewController.currentPlace = place
-            present(editViewController, animated: true, completion: nil)
+            detailViewController.currentPlace = place
+            present(detailViewController, animated: true, completion: nil)
         }
     }
 }

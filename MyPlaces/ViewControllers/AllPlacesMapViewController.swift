@@ -12,10 +12,10 @@ import RealmSwift
 
 class AllPlacesMapViewController: UIViewController {
     
-    var places = realm.objects(Place.self)
-    let mapManager = MapManager()
-    let annotationIdentifire = "annotetionID"
-    let regionRadius: Double = 8000000
+    private var places = realm.objects(Place.self)
+    private let mapManager = MapManager()
+    private let annotationIdentifire = "annotetionID"
+    private let regionRadius: Double = 8000000
     var centerCoordinate = CLLocationCoordinate2DMake(42,12)
     
     @IBOutlet weak var mapView: MKMapView!
@@ -34,6 +34,7 @@ class AllPlacesMapViewController: UIViewController {
             mapManager.setupPlacemark(place: place, mapView: mapView, annotation: annotation)
             mapView.showAnnotations([annotation], animated: true)
         }
+            
         DispatchQueue.main.async { [self] in
             mapView.setRegion(MKCoordinateRegion(center: centerCoordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius), animated: true)
         }
