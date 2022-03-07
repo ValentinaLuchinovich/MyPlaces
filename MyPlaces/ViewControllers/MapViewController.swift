@@ -16,11 +16,6 @@ protocol MapViewControllerDelegate {
 }
 
 class MapViewController: UIViewController {
-
-    @IBOutlet var mapView: MKMapView!
-    @IBOutlet var mapPinImage: UIImageView!
-    @IBOutlet var addressLabel: UILabel!
-    @IBOutlet var doneButtone: UIButton!
     
     let mapManager = MapManager()
     let annotation = MKPointAnnotation()
@@ -28,6 +23,11 @@ class MapViewController: UIViewController {
     var place = Place()
     var incomeSegueIdentifire = ""
     private var annotetionIdentifire = "annotetionIdentifire"
+    
+    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var mapPinImage: UIImageView!
+    @IBOutlet var addressLabel: UILabel!
+    @IBOutlet var doneButtone: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,6 +59,8 @@ class MapViewController: UIViewController {
         }
     }
 }
+
+// MARK: Delegate
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -110,6 +112,7 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
 
+//MARK: Location tarcker
 // Метод отслеживает в реальном времени изменение местоположения
 extension MapViewController: CLLocationManagerDelegate {
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

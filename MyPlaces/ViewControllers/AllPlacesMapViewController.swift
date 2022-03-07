@@ -11,26 +11,23 @@ import CoreLocation
 import RealmSwift
 
 class AllPlacesMapViewController: UIViewController {
-
-    @IBOutlet weak var mapView: MKMapView!
     
     var places = realm.objects(Place.self)
     let mapManager = MapManager()
     let annotationIdentifire = "annotetionID"
     let regionRadius: Double = 8000000
     var centerCoordinate = CLLocationCoordinate2DMake(42,12)
-   
-
+    
+    @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         mapView.delegate = self
-        
+        mapView.mapType = .hybridFlyover
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        mapView.mapType = .hybridFlyover
         mapView.removeAnnotations(mapView.annotations)
         for place in places {
             let annotation = MKPointAnnotation()
@@ -45,8 +42,9 @@ class AllPlacesMapViewController: UIViewController {
     @IBAction func myLocationButton(_ sender: Any) {
         mapManager.showUserLocation(mapView: mapView, latitudinalMeters: mapManager.regionInMetrs, longitudinalMeters: mapManager.regionInMetrs)
     }
-    
 }
+
+// MARK: Annotations
 
 extension AllPlacesMapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -57,9 +55,6 @@ extension AllPlacesMapViewController: MKMapViewDelegate {
         }
         annotationView?.canShowCallout = true
         annotationView?.markerTintColor = #colorLiteral(red: 1, green: 0.8323456645, blue: 0.4732058644, alpha: 1)
-        
         return annotationView
     }
-    
-    
 }

@@ -11,7 +11,6 @@ class CustomTableViewCell: UITableViewCell {
 
     @IBOutlet var imageOfPlace: UIImageView! {
         didSet {
-        // Делаем изображение в ячейке круглым
         imageOfPlace.layer.cornerRadius = imageOfPlace.frame.size.height / 2
         imageOfPlace.clipsToBounds = true
         }
