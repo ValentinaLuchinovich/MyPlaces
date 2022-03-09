@@ -555,7 +555,7 @@
                                 </imageReference>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Текущий адрес" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="37T-VM-A3R">
-                                <rect key="frame" x="103" y="220" width="208" height="36"/>
+                                <rect key="frame" x="10" y="220" width="394" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -580,6 +580,8 @@
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="leading" secondItem="ZuG-Nl-jl2" secondAttribute="leading" id="5Ur-zg-cVB"/>
                             <constraint firstItem="KC7-sm-gMg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Sbr-nU-ZA9" secondAttribute="trailing" constant="8" symbolic="YES" id="9h6-JT-9Xz"/>
                             <constraint firstItem="HWh-Dk-7QR" firstAttribute="centerY" secondItem="Q2l-Ou-KoB" secondAttribute="centerY" constant="20" id="Dfc-s2-D1Q"/>
+                            <constraint firstItem="ZuG-Nl-jl2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="37T-VM-A3R" secondAttribute="trailing" constant="10" id="HqP-G1-wQr"/>
+                            <constraint firstItem="37T-VM-A3R" firstAttribute="leading" secondItem="ZuG-Nl-jl2" secondAttribute="leading" constant="10" id="I5x-e9-lJh"/>
                             <constraint firstItem="DDR-Eg-gwc" firstAttribute="trailing" secondItem="ZuG-Nl-jl2" secondAttribute="trailing" id="NrZ-XZ-LAe"/>
                             <constraint firstItem="HWh-Dk-7QR" firstAttribute="centerX" secondItem="Q2l-Ou-KoB" secondAttribute="centerX" id="RxE-Ua-WBP"/>
                             <constraint firstItem="ohq-GR-j2u" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZuG-Nl-jl2" secondAttribute="leading" symbolic="YES" id="TUu-rm-CAC"/>
